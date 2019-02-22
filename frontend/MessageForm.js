@@ -13,6 +13,7 @@ class MessageForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     App.cable.subscriptions.subscriptions[0].speak({
+      user: this.props.user,
       message: this.state.body
     });
     this.setState({ body: "" });
@@ -27,6 +28,7 @@ class MessageForm extends React.Component {
             value={this.state.body}
             onChange={this.update("body")}
             placeholder="Type message here"
+            className="message-input"
           />
           <input type="submit" />
         </form>
